@@ -1,0 +1,30 @@
+<div class="box tabular">
+	<p><%= f.number_field :source_id %></p>
+	<p><%= f.text_field :source_name, :readonly => true %></p>
+	<p><%= f.number_field :target_id %></p>
+	<p><%= label_tag :target_name, l(:field_target_name)%><%= text_field_tag :target_name, @relation.target_name, :readonly => true %></p>
+
+	<%= f.hidden_field :data_type, :value => @type %>
+</div>
+
+<script>
+$(document).ready(function(){
+	$(document).on('change', '#synch_relation_source_id', function(){
+		$.ajax({
+			url:'/synch_relations/get_source_subject/'+this.value,
+			success: function(data){
+				$('#synch_relation_source_name').val(data);
+			}
+		});
+	});
+
+	$(document).on('change', '#synch_relation_target_id', function(){
+		$.ajax({
+			url:'/synch_relations/get_target_subject/'+this.value,
+			success: function(data){
+				$('#target_name').val(data);
+			}
+		});
+	});
+});
+</script>

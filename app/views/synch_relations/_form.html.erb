@@ -1,0 +1,19 @@
+<div class="box tabular">
+	<p><%= f.select :source_id, options_for_select(@source.map{|id, name| [name, id]}, @relation.source_id), {} %></p>
+	<%= f.hidden_field :source_name %>
+	<p><%= f.select :target_id, options_from_collection_for_select(@target, 'id', @name_field, @relation.target_id), {} %></p>
+
+	<%= f.hidden_field :data_type, :value => @type %>
+</div>
+
+<script>
+
+source_json = JSON.parse('<%=raw @source.to_json%>');
+
+$(document).ready(function(){
+	$('#synch_relation_source_name').val(source_json[$('#synch_relation_source_id').val()]);
+	$(document).on('change', '#synch_relation_source_id', function(source_id){
+		$('#synch_relation_source_name').val(source_json[$('#synch_relation_source_id').val()]);
+	});
+});
+</script>

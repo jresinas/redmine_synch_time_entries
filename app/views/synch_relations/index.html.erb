@@ -1,0 +1,82 @@
+<div class="splitcontentleft">
+	<h2><%=l(:"label_project_plural")%></h2>
+	<div class="contextual">
+		<%= link_to l(:label_project_new), new_synch_relation_path(:type => 'Project'), :class => 'icon icon-add' %>
+	</div>
+
+	<table class="list">
+		<thead>
+			<tr>
+				<th><%=l(:"synch_time_entries.label_source_value")%></th>
+				<th><%=l(:"synch_time_entries.label_target_value")%></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% SynchRelation.where(data_type: 'project').each do |r| %>
+				<tr>
+					<td><%=r.source_name%></td>
+					<td><%=r.target_name%></td>
+					<td><%= delete_link synch_relation_path(r.id) %></td>
+	    			<td><%= link_to l(:button_edit), edit_synch_relation_path(r.id, :type => 'Project'), :class => 'icon icon-edit' %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<div class="splitcontentright">
+	<h2><%=l(:"label_user_plural")%></h2>
+	<div class="contextual">
+		<%= link_to l(:label_user_new), new_synch_relation_path(:type => 'User'), :class => 'icon icon-add' %>
+	</div>
+
+	<table class="list">
+		<thead>
+			<tr>
+				<th><%=l(:"synch_time_entries.label_source_value")%></th>
+				<th><%=l(:"synch_time_entries.label_target_value")%></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% SynchRelation.where(data_type: 'user').each do |r| %>
+					<tr>
+						<td><%=r.source_name%></td>
+						<td><%=r.target_name%></td>
+						<td><%= delete_link synch_relation_path(r.id) %></td>
+		    			<td><%= link_to l(:button_edit), edit_synch_relation_path(r.id, :type => 'User'), :class => 'icon icon-edit' %></td>
+						</td>
+					</tr>
+				<% end %>
+		</tbody>
+	</table>
+</div>
+<div style="clear:both;"></div>
+<h2><%=l(:"label_issue_plural")%></h2>
+<div class="contextual">
+	<%= link_to l(:label_issue_new), new_synch_relation_path(:type => 'Issue'), :class => 'icon icon-add' %>
+</div>
+
+<table class="list">
+	<thead>
+		<tr>
+			<th><%=l(:"synch_time_entries.label_source_value")%></th>
+			<th><%=l(:"synch_time_entries.label_target_value")%></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% SynchRelation.where(data_type: 'issue').each do |r| %>
+			<tr>
+				<td><%='[#'+r.source_id.to_s+'] '+r.source_name%></td>
+				<td><%='[#'+r.target_id.to_s+'] '+r.target_name%></td>
+				<td><%= delete_link synch_relation_path(r.id) %></td>
+    			<td><%= link_to l(:button_edit), edit_synch_relation_path(r.id, :type => 'Issue'), :class => 'icon icon-edit' %></td>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

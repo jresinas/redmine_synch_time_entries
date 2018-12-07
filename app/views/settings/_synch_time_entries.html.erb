@@ -1,0 +1,41 @@
+<fieldset>
+	<legend><%=l(:"synch_time_entries.label_source_data")%></legend>
+	<p>
+		<label><%=l(:"synch_time_entries.label_protocol")%></label>
+		<%= select_tag 'settings[protocol]', options_for_select(['http', 'https'], @settings['protocol']) %>
+	</p>
+	<p>
+		<label><%=l(:"synch_time_entries.label_domain")%></label>
+		<%= text_field_tag 'settings[domain]', @settings['domain'] %>
+	</p>
+	<p>
+		<label><%=l(:"synch_time_entries.label_key")%></label>
+		<%= text_field_tag 'settings[key]', @settings['key'] %>
+	</p>
+</fieldset>
+<fieldset>
+	<legend><%=l(:"synch_time_entries.label_generated_issue_data")%></legend>
+	<p>
+		<label><%=l(:"synch_time_entries.label_issue_subject")%></label>
+		<%= text_field_tag 'settings[issue_subject]', @settings['issue_subject'] %>
+	</p>
+	<p>
+		<label><%=l(:"synch_time_entries.label_issue_tracker")%></label>
+		<%= select_tag 'settings[issue_tracker]', options_from_collection_for_select(Tracker.all, 'id', 'name', @settings['issue_tracker']) %>
+	</p>
+	<p>
+		<label><%=l(:"synch_time_entries.label_issue_user")%></label>
+		<%= select_tag 'settings[issue_user]', options_from_collection_for_select(User.all, 'id', 'login', @settings['issue_user']) %>
+	</p>
+</fieldset>
+<fieldset>
+	<legend><%=l(:"synch_time_entries.label_other_data")%></legend>
+	<p>
+		<label><%=l(:"synch_time_entries.label_offset_days")%></label>
+		<%= number_field_tag 'settings[offset_days]', @settings['offset_days'], {:min => 0} %>
+	</p>
+	<p>
+		<label><%=l(:"synch_time_entries.label_minutes_cache")%></label>
+		<%= number_field_tag 'settings[minutes_cache]', @settings['minutes_cache'], {:min => 0} %>
+	</p>
+</fieldset>

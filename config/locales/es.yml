@@ -1,0 +1,32 @@
+es:
+  field_source: Origen
+  field_target: Destino
+  synch_time_entries:
+    label_settings: Gestionar relaciones para importación de datos
+
+    label_projects: Proyectos
+    label_issues: Peticiones
+    label_users: Usuarios
+    label_source_value: Valor del origen
+    label_target_value: Valor del destino
+    text_create_notice: La relación se ha guardado correctamente
+
+    label_source_data: Datos del origen
+    label_protocol: Protocolo
+    label_domain: Dominio
+    label_key: Clave de la API
+    label_generated_issue_data: Datos de las peticiones generadas
+    label_issue_subject: Asunto de las peticiones generadas
+    label_issue_tracker: Tracker de las peticiones generadas
+    label_issue_user: Autor de las peticiones generadas
+    label_other_data: Otros datos
+    label_offset_days: Días de actualización
+    label_minutes_cache: Duración de caché de datos (minutos)
+
+    label_new_issue_relation: Nueva relación de peticiones
+    label_new_project_relation: Nueva relación de proyectos
+    label_new_user_relation: Nueva relación de usuarios
+    label_edit_issue_relation: Editar relación de peticiones
+    label_edit_project_relation: Editar relación de proyectos
+    label_edit_user_relation: Editar relación de usuarios
+

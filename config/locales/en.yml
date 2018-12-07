@@ -1,0 +1,32 @@
+es:
+  field_source: Source
+  field_target: Target
+  synch_time_entries:
+    label_settings: Manage import data relations
+
+    label_projects: Projects
+    label_issues: Issues
+    label_users: Users
+    label_source_value: Source value
+    label_target_value: Target value
+    text_create_notice: Relation saved
+
+    label_source_data: Source data
+    label_protocol: Protocol
+    label_domain: Domain
+    label_key: API key
+    label_generated_issue_data: Generated issue data
+    label_issue_subject: Generated issue subject
+    label_issue_tracker: Generated issue tracker
+    label_issue_user: Generated issue author
+    label_other_data: Other data
+    label_offset_days: Offset days
+    label_minutes_cache: Data cache expire time (minutes)
+
+    label_new_issue_relation: New issues relation
+    label_new_project_relation: New projects relation
+    label_new_user_relation: New users relation
+    label_edit_issue_relation: Edit issues relation
+    label_edit_project_relation: Edit projects relation
+    label_edit_user_relation: Edit users relation
+
