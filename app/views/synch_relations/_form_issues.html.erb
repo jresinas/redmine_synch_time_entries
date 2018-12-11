@@ -10,19 +10,23 @@
 <script>
 $(document).ready(function(){
 	$(document).on('change', '#synch_relation_source_id', function(){
+		$('input[type=submit]').prop('disabled', true);
 		$.ajax({
 			url:'/synch_relations/get_source_subject/'+this.value,
 			success: function(data){
 				$('#synch_relation_source_name').val(data);
+				$('input[type=submit]').prop('disabled', false);
 			}
 		});
 	});
 
 	$(document).on('change', '#synch_relation_target_id', function(){
+		$('input[type=submit]').prop('disabled', true);
 		$.ajax({
 			url:'/synch_relations/get_target_subject/'+this.value,
 			success: function(data){
 				$('#target_name').val(data);
+				$('input[type=submit]').prop('disabled', false);
 			}
 		});
 	});

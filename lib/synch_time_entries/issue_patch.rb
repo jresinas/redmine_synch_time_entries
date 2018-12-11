@@ -6,7 +6,7 @@ module SynchTimeEntries
 
       # Same as typing in the class
       base.class_eval do
-        has_one :synch_relation, :as => :target, :dependent => :destroy
+        has_many :synch_relations, :as => :target, :foreign_type => :data_type, :dependent => :destroy
       end
     end
 

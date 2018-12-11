@@ -1,6 +1,7 @@
 require 'synch_time_entries/time_entry_query_patch'
 require 'synch_time_entries/issue_patch'
 require 'synch_time_entries/user_patch'
+require 'synch_time_entries/project_patch'
 require 'synch_time_entries/time_entry_patch'
 
 Redmine::Plugin.register :redmine_synch_time_entries do
