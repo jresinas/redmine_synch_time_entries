@@ -46,7 +46,7 @@ namespace :synch do
 
 		deleted_time_entries_relations = SynchTimeEntryRelation.where("spent_on BETWEEN ? AND ? AND source_id NOT IN (?)", start_date, end_date, time_entries.map{|te| te[:id]})
 		deleted_time_entries_relations.each do |te_relation|
-			te_relation.target.delete
+			te_relation.time_entry.delete
 		end
 
 	end
