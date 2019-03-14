@@ -140,5 +140,55 @@ module SynchTimeEntries
 
 		    {:code => code, :result => result, :body => body}
 		end
+
+		# Obtiene todos los proyectos del origen en un árbol
+		def self.generate_project_tree(offset = 0)
+			projects = []
+			total = 1
+			while (offset < total)
+				res = redmine_request(get_endpoint('projects'), 'get', {:offset => offset})
+
+				if res[:result]
+					total = res[:body]['total_count']
+					offset += res[:body]['limit']
+					projects += res[:body]['projects'].map{|u| {id: u['id'], name: u['name'], parent_id: u['parent'].present? ? u['parent']['id'] : nil}}
+				end
+			end
+
+			tree = {}
+
+			projects.each do |project|
+				current = tree.fetch(project[:id]) { |key| tree[key] = {} }
+  				parent = tree.fetch(project[:parent_id]) { |key| tree[key] = {} }
+  				siblings = parent.fetch(:children) { |key| parent[key] = [] }
+
+  				current[:parent] = project[:parent_id]
+  				siblings.push(project[:id])
+			end
+
+			tree
+		end
+
+		def self.get_project_relations_tree(project_relations, offset = 0)
+			tree = generate_project_tree(offset)
+
+			project_relations_tree = []
+
+			project_relations.map do |k|
+				project_relations_tree.push({id: k.source_id, descendants: get_tree_descendants(tree, tree[k.source_id][:children])})
+			end
+
+			project_relations_tree
+		end
+
+		def self.get_tree_descendants(tree, children, descendants = [])
+			if children.present?
+				descendants |= children
+				descendants |= (children.map{ |c| get_tree_descendants(tree, tree[c][:children], descendants)}).flatten
+			else
+				descendants
+			end
+			#children.present? ? children |= (children.map{ |c| get_tree_descendants(tree, tree[c][:children])}).flatten : children
+		end
 	end
 end
