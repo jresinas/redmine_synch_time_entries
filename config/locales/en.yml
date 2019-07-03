@@ -10,6 +10,14 @@ en:
     label_source_value: Source value
     label_target_value: Target value
     text_create_notice: Relation saved
+    label_manual_synchronisation: Manual synchronisation
+    label_clear_synch: Clear
+    label_perform_synch: Synchronise
+    label_manual_synch_number: Perform action from 
+    label_months_ago: months ago.
+    please_wait: Please wait...
+    notice_successful_synch: Successful synchronisation.
+    error_synch_failed: An error occurred while synchronising time entries.
 
     label_source_data: Source data
     label_protocol: Protocol

@@ -80,3 +80,20 @@
 		<% end %>
 	</tbody>
 </table>
+<div style="clear: both;"></div>
+<fieldset class="tabular">
+	<legend><h2 style="text-transform: initial; font-size: 28px;"><%=l(:"synch_time_entries.label_manual_synchronisation")%></h2></legend>
+	<%= form_tag(action: 'perform_manual_synch') do %>
+		<p>
+			<label class="no-css" style="margin-right: 2px;"><%=l(:"synch_time_entries.label_manual_synch_number")%></label>
+			<%=number_field_tag 'number_of_months_ago', '3', min: 1, max: 120, required: true, style: 'width: 4em;'%>
+			<label class="no-css" style="margin-left: 2px;"><%=l(:"synch_time_entries.label_months_ago")%></label>
+		</p>
+		<p style="margin-top: 20px;">
+			<%= submit_tag l(:"synch_time_entries.label_clear_synch"), name: 'clear_synch', data: { confirm: l(:text_are_you_sure), disable_with: l(:"synch_time_entries.please_wait")}, :method => :delete %>
+			<span style="display: inline-block;width: 20px;"></span>
+			<%= submit_tag l(:"synch_time_entries.label_perform_synch"), data: { confirm: l(:text_are_you_sure), disable_with: l(:"synch_time_entries.please_wait")}%>
+		</p>
+	<% end %>
+</fieldset>
+<div style="clear: both;"></div>

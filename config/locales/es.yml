@@ -10,6 +10,14 @@ es:
     label_source_value: Valor del origen
     label_target_value: Valor del destino
     text_create_notice: La relación se ha guardado correctamente
+    label_manual_synchronisation: Sincronización manual
+    label_clear_synch: Limpiar
+    label_perform_synch: Sincronizar
+    label_manual_synch_number: Realizar acción desde 
+    label_months_ago: meses atrás.
+    please_wait: Espere, por favor...
+    notice_successful_synch: Sincronización correcta.
+    error_synch_failed: Ha ocurrido un error mientras se sincronizaban las imputaciones de horas.
 
     label_source_data: Datos del origen
     label_protocol: Protocolo
