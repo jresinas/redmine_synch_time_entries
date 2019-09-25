@@ -7,6 +7,8 @@
     <div id="all_attributes">
       <% if @type == 'Issue' %>
         <%= render :partial => 'synch_relations/form_issues', :locals => {:f => f} %>
+      <% elsif @type == 'Project' %>
+        <%= render :partial => 'synch_relations/form_projects', :locals => {:f => f} %>
       <% else %>
         <%= render :partial => 'synch_relations/form', :locals => {:f => f} %>
       <% end %>
