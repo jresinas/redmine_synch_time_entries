@@ -85,6 +85,32 @@ module SynchTimeEntries
 			time_entries
 		end
 
+		# Obtiene las imputaciones imputadas de un proyecto/petición con fecha entre start_date y end_date
+		def self.get_project_issue_time_entries(pr_is_id, data_type, start_date = nil, end_date = nil, offset = 0)
+			start_date = start_date || Date.today
+			end_date = end_date || Date.today
+			time_entries = []
+			total = 1
+			while (offset < total)
+				if data_type == 'Project'
+					res = redmine_request(get_endpoint('time_entries'), 'get', {:offset => offset, :project_id => pr_is_id, :spent_on => "><#{start_date}|#{end_date}"})
+				elsif data_type == 'Issue'
+					res = redmine_request(get_endpoint('time_entries'), 'get', {:offset => offset, :issue_id => pr_is_id, :spent_on => "><#{start_date}|#{end_date}"})
+				else
+					res = nil
+				end
+						
+
+				if res[:result]
+					total = res[:body]['total_count']
+					offset += res[:body]['limit']
+					time_entries += res[:body]['time_entries'].map{|te| {:id => te['id'], :issue_id => (te['issue'].present? ? te['issue']['id'] : nil), :project_id => te['project']['id'], :user => te['user']['id'], :spent_on => te['spent_on'], :activity_id => te['activity']['id'], :comments => te['comments'], :hours => te['hours'], :updated_on => te['updated_on']}}
+				end
+			end
+
+			time_entries
+		end
+
 		def self.get_endpoint(action, id = nil)
 			if Setting.plugin_redmine_synch_time_entries['protocol'].present? and Setting.plugin_redmine_synch_time_entries['domain'].present? #and Setting.plugin_redmine_synch_time_entries['key'].present?
 				protocol = Setting.plugin_redmine_synch_time_entries['protocol']

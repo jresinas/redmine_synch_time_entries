@@ -105,7 +105,16 @@ class SynchRelationsController < ApplicationController
                 project_relations_tree = SynchTimeEntries::Source.get_project_relations_tree(project_relations)
                 start_date = Date.today - offset_months.months
                 end_date = Date.today
-                time_entries = SynchTimeEntries::Source.get_time_entries(start_date, end_date)
+                time_entries = []
+                issue_relations.each do |ir|
+                    time_entries += SynchTimeEntries::Source.get_project_issue_time_entries(ir.source_id, ir.data_type, start_date, end_date)
+                end
+                project_relations_tree.each do |pr|
+                    time_entries += SynchTimeEntries::Source.get_project_issue_time_entries(pr[:id], 'Project', start_date, end_date)
+                    pr[:descendants].each do |id|
+                        time_entries += SynchTimeEntries::Source.get_project_issue_time_entries(id, 'Project', start_date, end_date)
+                    end
+                end
                 time_entries_relations = SynchTimeEntryRelation.where("spent_on BETWEEN ? AND ?", start_date, end_date)
 
                 time_entries.each do |te|
