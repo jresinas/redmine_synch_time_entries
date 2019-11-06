@@ -201,7 +201,7 @@ module SynchTimeEntries
 			project_relations_tree = []
 
 			project_relations.map do |k|
-				project_relations_tree.push({id: k.source_id, descendants: get_tree_descendants(tree, tree[k.source_id][:children])})
+				project_relations_tree.push({id: k.source_id, descendants: get_tree_descendants(tree, tree[k.source_id].present? ? tree[k.source_id][:children] : [])})
 			end
 
 			project_relations_tree
