@@ -92,8 +92,8 @@ class SynchRelationsController < ApplicationController
                 @target = User.all.order(:login)
                 @name_field = 'login'
             when 'Project'
-                @target = Project.all.order(:name)
-                @name_field = 'name'
+                @target = Project.all.order(:identifier)
+                @name_field = 'identifier'
             end
         end 
 
@@ -119,7 +119,7 @@ class SynchRelationsController < ApplicationController
         def get_source_projects
         	minutes_cache = Setting.plugin_redmine_synch_time_entries['minutes_cache'].present? ? Setting.plugin_redmine_synch_time_entries['minutes_cache'] : 10
         	@source = Rails.cache.fetch(:source_projects, :expires_in => (minutes_cache.to_i).minutes) do
-			    SynchTimeEntries::Source.get_projects
+			    SynchTimeEntries::Source.get_projects_identifier
 			end
         end
 end

@@ -7,7 +7,7 @@ class SynchRelation < ActiveRecord::Base
 		when 'Issue'
 			return target.subject
 		when 'Project'
-			return target.name
+			return target.identifier
 		when 'User'
 			return target.login
 		end
