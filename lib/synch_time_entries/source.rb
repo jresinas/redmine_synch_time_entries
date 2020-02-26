@@ -66,6 +66,23 @@ module SynchTimeEntries
 			projects.to_h
 		end
 
+		# Obtiene todos los proyectos del origen por identificador
+		def self.get_projects_identifier(offset = 0)
+			projects = []
+			total = 1
+			while (offset < total)
+				res = redmine_request(get_endpoint('projects'), 'get', {:offset => offset})
+
+				if res[:result]
+					total = res[:body]['total_count']
+					offset += res[:body]['limit']
+					projects += res[:body]['projects'].map{|u| [u['id'], u['identifier']]}
+				end
+			end
+
+			projects.to_h
+		end
+
 		# Obtiene las imputaciones imputadas con fehca entre start_date y end_date
 		def self.get_time_entries(start_date = nil, end_date = nil, offset = 0)
 			start_date = start_date || Date.today

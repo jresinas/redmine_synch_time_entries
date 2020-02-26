@@ -30,6 +30,11 @@ es:
     label_other_data: Otros datos
     label_offset_days: Días de actualización
     label_minutes_cache: Duración de caché de datos (minutos)
+    label_minutes_import_cache: Duración de caché de importación (minutos)
+    label_synch_year: Sincronizar año
+    label_synch_mode: Modo de sincronización
+    window_synch_mode: Ventana
+    year_synch_mode: Año
 
     label_new_issue_relation: Nueva relación de peticiones
     label_new_project_relation: Nueva relación de proyectos
@@ -37,4 +42,7 @@ es:
     label_edit_issue_relation: Editar relación de peticiones
     label_edit_project_relation: Editar relación de proyectos
     label_edit_user_relation: Editar relación de usuarios
+    label_import_project_relation: Importar relaciones de proyectos
+    label_import_user_relation: Importar relaciones de usuarios
+    label_delete_existing_synch_relations: Eliminar relaciones existentes
 

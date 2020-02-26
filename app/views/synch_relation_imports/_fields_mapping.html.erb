@@ -1,0 +1,20 @@
+<div class="splitcontent">
+<div class="splitcontentleft">
+<p>
+  <label><%= l(:field_source) %></label>
+  <%= mapping_select_tag @import, 'source_identifier', :required => true %>
+</p>
+<p>
+  <label><%= l(:field_target) %></label>
+  <%= mapping_select_tag @import, 'target_identifier', :required => true %>
+</p>
+<p>
+  <label><%= l(:"synch_time_entries.label_delete_existing_synch_relations") %></label>
+  <%= check_box_tag 'delete_existing_synch_relations', 'yes' %>
+</p>
+</div>
+
+<div class="splitcontentright">
+</div>
+</div>
+

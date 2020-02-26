@@ -7,8 +7,13 @@ namespace :synch do
 		issue_relations = SynchRelation.where(data_type: 'Issue')
 		project_relations = SynchRelation.where(data_type: 'Project')
 		project_relations_tree = SynchTimeEntries::Source.get_project_relations_tree(project_relations)
-		start_date = Date.today - (Setting.plugin_redmine_synch_time_entries['offset_days'].to_i || 0).days
-		end_date = Date.today
+		if Setting.plugin_redmine_synch_time_entries['synch_mode'].present? and Setting.plugin_redmine_synch_time_entries['synch_mode'] == 'year'
+			start_date = Date.new(Setting.plugin_redmine_synch_time_entries['synch_year'].to_i, 1, 1)
+			end_date = Date.new(Setting.plugin_redmine_synch_time_entries['synch_year'].to_i, 12, 31)
+		else
+			start_date = Date.today - (Setting.plugin_redmine_synch_time_entries['offset_days'].to_i || 0).days
+			end_date = Date.today
+		end
 		time_entries = SynchTimeEntries::Source.get_time_entries(start_date, end_date)
 		time_entries_relations = SynchTimeEntryRelation.where("spent_on BETWEEN ? AND ?", start_date, end_date)
 

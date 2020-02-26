@@ -1,0 +1,28 @@
+<% if @type == 'User' %>
+  <h2><%= l(:"synch_time_entries.label_import_user_relation") %></h2>
+<% elsif @type == 'Project' %>
+  <h2><%= l(:"synch_time_entries.label_import_project_relation") %></h2>
+<% end %>
+
+<%= form_tag(synch_relation_import_settings_path(@import), :id => "import-form") do %>
+  <fieldset class="box tabular">
+    <legend><%= l(:label_options) %></legend>
+    <p>
+      <label><%= l(:label_fields_separator) %></label>
+      <%= select_tag 'import_settings[separator]',
+            options_for_select([[l(:label_comma_char), ','], [l(:label_semi_colon_char), ';']], @import.settings['separator']) %>
+    </p>
+    <p>
+      <label><%= l(:label_fields_wrapper) %></label>
+      <%= select_tag 'import_settings[wrapper]',
+          options_for_select([[l(:label_quote_char), "'"], [l(:label_double_quote_char), '"']], @import.settings['wrapper']) %>
+    </p>
+    <p>
+      <label><%= l(:label_encoding) %></label>
+      <%= select_tag 'import_settings[encoding]', options_for_select(Setting::ENCODINGS, @import.settings['encoding']) %>
+    </p>
+    <p><%= hidden_field_tag 'import_settings[date_format]', @import.settings['date_format'] %>
+    <p><%= hidden_field_tag 'import_settings[data_type]', @type %></p>
+  </fieldset>
+  <p><%= submit_tag l(:label_next).html_safe + " &#187;".html_safe, :name => nil %></p>
+<% end %>

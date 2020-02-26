@@ -30,12 +30,39 @@
 </fieldset>
 <fieldset>
 	<legend><%=l(:"synch_time_entries.label_other_data")%></legend>
-	<p>
-		<label><%=l(:"synch_time_entries.label_offset_days")%></label>
-		<%= number_field_tag 'settings[offset_days]', @settings['offset_days'], {:min => 0} %>
-	</p>
+	<div class="splitcontent">
 	<p>
 		<label><%=l(:"synch_time_entries.label_minutes_cache")%></label>
 		<%= number_field_tag 'settings[minutes_cache]', @settings['minutes_cache'], {:min => 0} %>
 	</p>
+	<p>
+		<label><%=l(:"synch_time_entries.label_minutes_import_cache")%></label>
+		<%= number_field_tag 'settings[minutes_import_cache]', @settings['minutes_import_cache'], {:min => 0} %>
+	</p>
+		<p>
+			<label for="settings[synch_mode]"><%= l(:"synch_time_entries.label_synch_mode")%></label>
+			<% %w(window year).each do |synch_mode| %>
+			<%= radio_button_tag 'settings[synch_mode]', synch_mode, @settings['synch_mode'] == synch_mode %>
+			<%= l(:"synch_time_entries.#{synch_mode}_synch_mode") %>
+			<% end %>
+		</p>
+		<div class="splitcontentleft">
+			<fieldset class="settings">
+				<legend><%=l(:"synch_time_entries.window_synch_mode")%></legend>
+				<p>
+					<label><%=l(:"synch_time_entries.label_offset_days")%></label>
+					<%= number_field_tag 'settings[offset_days]', @settings['offset_days'], {:min => 0} %>
+				</p>
+			</fieldset>
+		</div>
+		<div class="splitcontentright">
+			<fieldset class="settings">
+				<legend><%=l(:"synch_time_entries.year_synch_mode")%></legend>
+				<p>
+					<label><%=l(:"synch_time_entries.label_synch_year")%></label>
+					<%= select_year(@settings['synch_year'].to_i, start_year: 2019, field_name: 'synch_year', prefix: 'settings') %>
+				</p>
+			</fieldset>
+		</div>
+	</div>
 </fieldset>

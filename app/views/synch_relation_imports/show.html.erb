@@ -1,0 +1,31 @@
+<% if @import.settings['data_type'] == 'User' %>
+  <h2><%= l(:"synch_time_entries.label_import_user_relation") %></h2>
+<% elsif @import.settings['data_type'] == 'Project' %>
+  <h2><%= l(:"synch_time_entries.label_import_project_relation") %></h2>
+<% end %>
+
+<% if @import.unsaved_items.count == 0 %>
+  <p><%= l(:notice_import_finished, :count => @import.saved_items.count) %></p>
+
+  <ol>
+  <% @import.saved_objects.each do |synch_relation| %>
+    <li><%= link_to synch_relation.source_name + ' - ' + (case synch_relation.data_type; when 'User' then synch_relation.target.login; when 'Project' then synch_relation.target.identifier; else ''; end), edit_synch_relation_path(synch_relation.id, :type => synch_relation.data_type) %></li>
+  <% end %>
+  </ul>
+<% else %>
+  <p><%= l(:notice_import_finished_with_errors, :count => @import.unsaved_items.count, :total => @import.total_items) %></p>
+
+  <table id="unsaved-items" class="list">
+    <tr>
+      <th>Position</th>
+      <th>Message</th>
+    </tr>
+  <% @import.unsaved_items.each do |item| %>
+    <tr>
+      <td><%= item.position %></td>
+      <td><%= simple_format_without_paragraph item.message %></td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
+<p><%= link_to l(:label_change_view_all), synch_relations_path, :method => :get %></p>

@@ -30,6 +30,11 @@ en:
     label_other_data: Other data
     label_offset_days: Offset days
     label_minutes_cache: Data cache expire time (minutes)
+    label_minutes_import_cache: Import cache expire time (minutes)
+    label_synch_year: Synchronise year
+    label_synch_mode: Synchronisation mode
+    window_synch_mode: Window
+    year_synch_mode: Year
 
     label_new_issue_relation: New issues relation
     label_new_project_relation: New projects relation
@@ -37,4 +42,7 @@ en:
     label_edit_issue_relation: Edit issues relation
     label_edit_project_relation: Edit projects relation
     label_edit_user_relation: Edit users relation
+    label_import_project_relation: Import projects relations
+    label_import_user_relation: Import users relations
+    label_delete_existing_synch_relations: Delete existing relations
 

@@ -2,6 +2,8 @@
 	<h2><%=l(:"label_project_plural")%></h2>
 	<div class="contextual">
 		<%= link_to l(:label_project_new), new_synch_relation_path(:type => 'Project'), :class => 'icon icon-add' %>
+		<br /><%= link_to l(:"button_import") + ' ' + l(:"label_project_plural") + ' ' + l(:"label_date_from").downcase + ' CSV', new_synch_relation_import_path(:type => 'Project'), :class => 'icon icon-duplicate' %>
+		<br /><%= link_to l(:"button_export") + ' CSV', synch_relations_path(:format => :csv, :type => 'Project'), :method => :get, :class => 'icon icon-file text-csv' %>
 	</div>
 
 	<table class="list">
@@ -29,6 +31,8 @@
 	<h2><%=l(:"label_user_plural")%></h2>
 	<div class="contextual">
 		<%= link_to l(:label_user_new), new_synch_relation_path(:type => 'User'), :class => 'icon icon-add' %>
+		<br /><%= link_to l(:"button_import") + ' ' + l(:"label_user_plural") + ' ' + l(:"label_date_from").downcase + ' CSV', new_synch_relation_import_path(:type => 'User'), :class => 'icon icon-duplicate' %>
+		<br /><%= link_to l(:"button_export") + ' CSV', synch_relations_path(:format => :csv, :type => 'User'), :method => :get, :class => 'icon icon-file text-csv' %>
 	</div>
 
 	<table class="list">
