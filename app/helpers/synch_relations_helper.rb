@@ -3,7 +3,8 @@ module SynchRelationsHelper
 		Redmine::Export::CSV.generate do |csv|
 			columns = [
 				'source',
-				'target'
+				'target',
+				'start_date'
 			]
 
 			csv << columns.map{|column| l('field_' + column)}
@@ -29,6 +30,8 @@ module SynchRelationsHelper
 #						end
 					elsif column == 'target'
 						target_name
+					elsif column == 'start_date'
+						sr.start_date
 					else
 						''
 					end

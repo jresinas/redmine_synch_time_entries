@@ -20,7 +20,7 @@ namespace :synch do
 		time_entries.each do |te|
 			project_match = project_relations_tree.detect{|p| p[:id] == te[:project_id] or p[:descendants].include?(te[:project_id])}
 			project_match_id = project_match.present? ? project_match[:id] : nil
-			if (user_relation = user_relations.find_by(source_id: te[:user])) and ((issue_relation = issue_relations.find_by(source_id: te[:issue_id])) or (project_relation = project_relations.find_by(source_id: project_match_id)))
+			if (user_relation = user_relations.find_by(source_id: te[:user])) and ((issue_relation = issue_relations.find_by(source_id: te[:issue_id])) or ((project_relation = project_relations.find_by(source_id: project_match_id)) and (project_relation.start_date.blank? or project_relation.start_date <= te[:spent_on].to_date)))
 				# Obtenemos usuario de destino
 				te[:user] = User.find(user_relation.target_id)
 

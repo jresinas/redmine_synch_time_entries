@@ -120,6 +120,12 @@ class SynchRelationImport < Import
 		}
 		synch_relation.send :safe_attributes=, attributes, user
 
+		attributes = {}
+		if start_date = row_date(row, 'start_date')
+      		attributes['start_date'] = start_date
+    	end
+    	synch_relation.send :safe_attributes=, attributes, user
+
 		synch_relation
 	end
 

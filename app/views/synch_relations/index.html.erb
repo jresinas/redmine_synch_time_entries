@@ -11,6 +11,7 @@
 			<tr>
 				<th><%=l(:"synch_time_entries.label_source_value")%></th>
 				<th><%=l(:"synch_time_entries.label_target_value")%></th>
+				<th><%=l(:"field_start_date")%></th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -20,6 +21,7 @@
 				<tr>
 					<td><%=r.source_name%></td>
 					<td><%=r.target_name%></td>
+					<td><%=r.start_date%></td>
 					<td><%= delete_link synch_relation_path(r.id) %></td>
 	    			<td><%= link_to l(:button_edit), edit_synch_relation_path(r.id, :type => 'Project'), :class => 'icon icon-edit' %></td>
 				</tr>

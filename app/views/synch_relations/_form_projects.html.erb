@@ -7,6 +7,7 @@
 	<p><%= f.select :source_id, options_for_select(@source.map{|id, identifier| [identifier, id]}, @relation.source_id), {} %></p>
 	<%= f.hidden_field :source_name %>
 	<p><%= f.select :target_id, options_from_collection_for_select(@target, 'id', @name_field, @relation.target_id), {} %></p>
+	<p><%= f.date_field :start_date %></p>
 
 	<%= f.hidden_field :data_type, :value => @type %>
 </div>

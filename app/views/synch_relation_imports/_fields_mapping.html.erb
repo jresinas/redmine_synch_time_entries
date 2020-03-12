@@ -9,6 +9,10 @@
   <%= mapping_select_tag @import, 'target_identifier', :required => true %>
 </p>
 <p>
+  <label><%= l(:field_start_date) %></label>
+  <%= mapping_select_tag @import, 'start_date' %>
+</p>
+<p>
   <label><%= l(:"synch_time_entries.label_delete_existing_synch_relations") %></label>
   <%= check_box_tag 'delete_existing_synch_relations', 'yes' %>
 </p>

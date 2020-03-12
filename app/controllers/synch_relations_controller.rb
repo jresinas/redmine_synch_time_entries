@@ -172,7 +172,7 @@ class SynchRelationsController < ApplicationController
 
 	private
         def synch_relation_params
-            params.require(:synch_relation).permit(:source_id, :source_name, :target_id, :data_type)
+            params.require(:synch_relation).permit(:source_id, :source_name, :target_id, :data_type, :start_date)
         end
 
         def get_relation
