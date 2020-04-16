@@ -31,10 +31,9 @@ en:
     label_offset_days: Offset days
     label_minutes_cache: Data cache expire time (minutes)
     label_minutes_import_cache: Import cache expire time (minutes)
-    label_synch_year: Synchronise year
     label_synch_mode: Synchronisation mode
     window_synch_mode: Window
-    year_synch_mode: Year
+    date_range_synch_mode: Date range
 
     label_new_issue_relation: New issues relation
     label_new_project_relation: New projects relation

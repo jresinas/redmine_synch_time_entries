@@ -31,10 +31,9 @@ es:
     label_offset_days: Días de actualización
     label_minutes_cache: Duración de caché de datos (minutos)
     label_minutes_import_cache: Duración de caché de importación (minutos)
-    label_synch_year: Sincronizar año
     label_synch_mode: Modo de sincronización
     window_synch_mode: Ventana
-    year_synch_mode: Año
+    date_range_synch_mode: Intervalo de fechas
 
     label_new_issue_relation: Nueva relación de peticiones
     label_new_project_relation: Nueva relación de proyectos

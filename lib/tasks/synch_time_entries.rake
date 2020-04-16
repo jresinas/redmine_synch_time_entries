@@ -7,9 +7,9 @@ namespace :synch do
 		issue_relations = SynchRelation.where(data_type: 'Issue')
 		project_relations = SynchRelation.where(data_type: 'Project')
 		project_relations_tree = SynchTimeEntries::Source.get_project_relations_tree(project_relations)
-		if Setting.plugin_redmine_synch_time_entries['synch_mode'].present? and Setting.plugin_redmine_synch_time_entries['synch_mode'] == 'year'
-			start_date = Date.new(Setting.plugin_redmine_synch_time_entries['synch_year'].to_i, 1, 1)
-			end_date = Date.new(Setting.plugin_redmine_synch_time_entries['synch_year'].to_i, 12, 31)
+		if Setting.plugin_redmine_synch_time_entries['synch_mode'].present? and Setting.plugin_redmine_synch_time_entries['synch_mode'] == 'date_range' and Setting.plugin_redmine_synch_time_entries['synch_start_date'].present? and Setting.plugin_redmine_synch_time_entries['synch_end_date'].present?
+			start_date = Date.parse(Setting.plugin_redmine_synch_time_entries['synch_start_date'])
+			end_date = Date.parse(Setting.plugin_redmine_synch_time_entries['synch_end_date'])
 		else
 			start_date = Date.today - (Setting.plugin_redmine_synch_time_entries['offset_days'].to_i || 0).days
 			end_date = Date.today
