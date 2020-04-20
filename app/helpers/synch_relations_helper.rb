@@ -4,8 +4,11 @@ module SynchRelationsHelper
 			columns = [
 				'source',
 				'target',
-				'start_date'
 			]
+
+			if synch_relations.present? and synch_relations.first.data_type == 'Project'
+				columns << 'start_date'
+			end
 
 			csv << columns.map{|column| l('field_' + column)}
 
