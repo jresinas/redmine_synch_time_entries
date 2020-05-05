@@ -14,7 +14,7 @@ class SynchRelationImport < Import
 		minutes_cache = Setting.plugin_redmine_synch_time_entries['minutes_import_cache'].present? ? Setting.plugin_redmine_synch_time_entries['minutes_import_cache'] : 10
 		if data_type == 'User'
 			Rails.cache.fetch(:source_users_import, :expires_in => (minutes_cache.to_i).minutes) do
-				SynchTimeEntries::Source.get_users.sort_by {|_key, value| value}.to_h
+				(SynchTimeEntries::Source.get_users.merge(SynchTimeEntries::Source.get_locked_users)).sort_by {|_key, value| value}.to_h
 			end
 		elsif data_type == 'Project'
 			Rails.cache.fetch(:source_projects_import, :expires_in => (minutes_cache.to_i).minutes) do

@@ -21,6 +21,23 @@ module SynchTimeEntries
 			users.to_h
 		end
 
+		# Obtiene todos los usuarios bloqueados del origen
+		def self.get_locked_users(offset = 0)
+			users = []
+			total = 1
+			while (offset < total)
+				res = redmine_request(get_endpoint('users'), 'get', {:offset => offset, :status => 3})
+
+				if res[:result]
+					total = res[:body]['total_count']
+					offset += res[:body]['limit']
+					users += res[:body]['users'].map{|u| [u['id'], u['login']]}
+				end
+			end
+
+			users.to_h
+		end
+
 		# Obtiene la petición con identificador id del origen
 		def self.get_issue(id)
 			res = redmine_request(get_endpoint('issues', id), 'get')
