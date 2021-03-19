@@ -38,4 +38,8 @@
 		<label><%=l(:"synch_time_entries.label_minutes_cache")%></label>
 		<%= number_field_tag 'settings[minutes_cache]', @settings['minutes_cache'], {:min => 0} %>
 	</p>
+	<p>
+		<label><%=l(:"synch_time_entries.label_delete_before_synch")%></label>
+		<%= check_box_tag 'settings[delete_before_synch]', true, @settings['delete_before_synch'] %>
+	</p>
 </fieldset>

@@ -12,6 +12,14 @@ namespace :synch do
 		time_entries = SynchTimeEntries::Source.get_time_entries(start_date, end_date)
 		time_entries_relations = SynchTimeEntryRelation.where("spent_on BETWEEN ? AND ?", start_date, end_date)
 
+		if Setting.plugin_redmine_synch_time_entries['delete_before_synch'].present?
+			deleted_time_entries_relations = SynchTimeEntryRelation.where("spent_on BETWEEN ? AND ? AND source_id IN (?)", start_date, end_date, time_entries_relations.map{|ter| ter.source_id})
+			deleted_time_entries_relations.each do |te_relation|
+				te_relation.time_entry.present? ? te_relation.time_entry.delete : te_relation.delete
+			end
+			time_entries_relations.delete_all
+		end
+
 		time_entries.each do |te|
 			project_match = project_relations_tree.detect{|p| p[:id] == te[:project_id] or p[:descendants].include?(te[:project_id])}
 			project_match_id = project_match.present? ? project_match[:id] : nil

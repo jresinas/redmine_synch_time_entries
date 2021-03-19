@@ -22,6 +22,7 @@ en:
     label_other_data: Other data
     label_offset_days: Offset days
     label_minutes_cache: Data cache expire time (minutes)
+    label_delete_before_synch: Delete data before synchronising
 
     label_new_issue_relation: New issues relation
     label_new_project_relation: New projects relation

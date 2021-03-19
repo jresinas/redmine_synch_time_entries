@@ -22,6 +22,7 @@ es:
     label_other_data: Otros datos
     label_offset_days: Días de actualización
     label_minutes_cache: Duración de caché de datos (minutos)
+    label_delete_before_synch: Borrar datos antes de la sincronización
 
     label_new_issue_relation: Nueva relación de peticiones
     label_new_project_relation: Nueva relación de proyectos
